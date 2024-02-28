@@ -1,0 +1,8 @@
+# Ignore eclipse workspace files
+.project
+.classpath
+**/.settings
+# Ignore MacOS folder preferences
+.DS_Store
+# Ignore build output
+**/target
