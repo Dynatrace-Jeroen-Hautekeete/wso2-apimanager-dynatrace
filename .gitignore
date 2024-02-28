@@ -5,4 +5,5 @@
 # Ignore MacOS folder preferences
 .DS_Store
 # Ignore build output
+!custom.opentelemetry.tracer/target/custom.opentelemetry.tracer-1.0.0-SNAPSHOT.jar
 **/target
