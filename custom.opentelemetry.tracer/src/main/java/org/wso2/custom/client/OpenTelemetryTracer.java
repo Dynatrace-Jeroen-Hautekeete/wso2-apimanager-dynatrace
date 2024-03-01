@@ -17,31 +17,35 @@
  */
 package org.wso2.custom.client;
 
+import io.opentracing.Tracer;
+import io.opentracing.util.GlobalTracer;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import io.opentracing.util.GlobalTracer;
-import io.opentracing.Tracer;
 import org.wso2.carbon.apimgt.tracing.OpenTracer;
 
 /**
- * Class for getting OpenTelemetry tracer from reading configuration file
+ * Class for getting OpenTelemetry tracer from reading configuration file.
  * */
 public class OpenTelemetryTracer implements OpenTracer {
-
+    /** OpenTracer name. */
     private static final String NAME = "opentelemetry";
-	
-	private static final Log log = LogFactory.getLog(OpenTelemetryTracer.class);
+    /** OpenTracer log. */
+    private static final Log LOG = LogFactory.
+            getLog(OpenTelemetryTracer.class);
 
+    /** OpenTracer trace accessor.
+     * @param serviceName name of the service to be traced
+     */
     @Override
-    public Tracer getTracer(String serviceName) {
+    public final Tracer getTracer(final String serviceName) {
 
         return GlobalTracer.get();
     }
 
+    /** OpenTracer name accessor. */
     @Override
-    public String getName() {
-		log.warn("getName() called");
+    public final String getName() {
+        LOG.warn("getName() called");
         return NAME;
     }
 }
-

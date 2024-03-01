@@ -51,13 +51,14 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <!-- <version>2.3.2</version> -->
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-scr-plugin</artifactId>
+                <version>1.26.4</version>
                 <executions>
                     <execution>
                         <id>generate-scr-scrdescriptor</id>
@@ -81,7 +82,7 @@
         <dependency>
             <groupId>io.opentracing</groupId>
             <artifactId>opentracing-api</artifactId>
-            <version>0.31.0</version>
+            <version>0.32.0</version>
         </dependency>
 		<!-- <dependency>
 			<groupId>io.opentelemetry</groupId>

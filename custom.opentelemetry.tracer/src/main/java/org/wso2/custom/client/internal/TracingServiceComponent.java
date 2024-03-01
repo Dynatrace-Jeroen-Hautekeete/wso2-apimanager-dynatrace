@@ -22,35 +22,48 @@ import org.apache.commons.logging.LogFactory;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.ComponentContext;
-import org.osgi.service.component.annotations.*;
-import org.wso2.carbon.apimgt.tracing.*;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.wso2.carbon.apimgt.tracing.OpenTracer;
 import org.wso2.custom.client.OpenTelemetryTracer;
 
+/** TracingServiceComponent. */
 @Component(
          name = "org.wso2.custom.client.TracingServiceComponent",
         immediate = true)
 public class TracingServiceComponent {
 
-    private static final Log log = LogFactory.getLog(TracingServiceComponent.class);
+    /** TracingServiceComponent Logger. */
+    private static final Log LOG =
+            LogFactory.getLog(TracingServiceComponent.class);
 
+    /** TracingServiceComponent ServiceRgistration. */
     private ServiceRegistration registration;
 
+    /** TracingServiceComponent activation.
+     * @param componentContext component tracing context
+     * */
     @Activate
-    protected void activate(ComponentContext componentContext) {
-		log.warn("OpenTelemetryTracer activated");
+    protected final void activate(final ComponentContext componentContext) {
+        LOG.warn("OpenTelemetryTracer activated");
         try {
             BundleContext bundleContext = componentContext.getBundleContext();
-            registration = bundleContext.registerService(OpenTracer.class, new OpenTelemetryTracer(),null);
+            registration = bundleContext.registerService(OpenTracer.class,
+                    new OpenTelemetryTracer(), null);
 
         } catch (Exception e) {
-            log.error("Error occured in tracing component activation", e);
+            LOG.error("Error occured in tracing component activation", e);
         }
     }
 
+    /** TracingServiceComponent deactivation.
+     * @param componentContext component tracing context
+     * */
     @Deactivate
-    protected void deactivate(ComponentContext componentContext) {
+    protected final void deactivate(final ComponentContext componentContext) {
 
-        log.warn("OpenTelemetryTracer deactivated");
+        LOG.warn("OpenTelemetryTracer deactivated");
         registration.unregister();
     }
 }
