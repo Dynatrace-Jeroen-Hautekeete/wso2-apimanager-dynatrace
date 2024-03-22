@@ -38,7 +38,6 @@ public class OpenTelemetryTracer implements OpenTracer {
      */
     @Override
     public final Tracer getTracer(final String serviceName) {
-
         return GlobalTracer.get();
     }
 
